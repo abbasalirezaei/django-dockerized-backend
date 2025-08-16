@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   redis:
-    container_name: redis
+    container_name: ${PROJECT_PREFIX}_redis
     image: redis:alpine
     restart: always
     ports:
@@ -12,7 +12,7 @@ services:
       - .env
 
   postgres:
-    container_name: postgres-db
+    container_name: ${PROJECT_PREFIX}_postgres-db
     image: postgres:16.2
     restart: always
     ports:
@@ -27,7 +27,7 @@ services:
       retries: 5
 
   backend:
-    container_name: django-backend
+    container_name: ${PROJECT_PREFIX}_backend
     build:
       context: ./backend
       dockerfile: Dockerfile
@@ -48,8 +48,8 @@ services:
         condition: service_started
 
   worker:
-    container_name: celery-worker
-    image: django-backend:latest   # <-- reuse backend image for worker and avoid duplication
+    container_name: ${PROJECT_PREFIX}_celery-worker
+    image: django-backend:latest
     command: celery -A core worker --loglevel=info
     depends_on:
       - redis
@@ -60,8 +60,8 @@ services:
       - .env
 
   beat:
-    container_name: celery-beat
-    image: django-backend:latest   # <-- reuse backend image for beat and avoid duplication
+    container_name: ${PROJECT_PREFIX}_celery-beat
+    image: django-backend:latest
     command: celery -A core beat --loglevel=info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     depends_on:
       - redis
@@ -72,7 +72,7 @@ services:
       - .env
 
   flower:
-    container_name: celery-flower
+    container_name: ${PROJECT_PREFIX}_celery-flower
     image: mher/flower
     ports:
       - "5555:5555"
@@ -83,7 +83,7 @@ services:
       - .env
 
   smtp4dev:
-    container_name: smtp4dev-mail
+    container_name: ${PROJECT_PREFIX}_smtp4dev-mail
     image: rnwood/smtp4dev:v3
     restart: always
     ports:

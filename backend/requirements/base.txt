@@ -1,35 +1,35 @@
 # ===========================
 # Core Dependencies
 # ===========================
-Django==4.2.5
-psycopg2-binary==2.9.7
-Pillow
+Django==5.2.5
+psycopg2-binary==2.9.10
+Pillow==11.3.0
 
 # ===========================
 # Django Extensions & APIs
 # ===========================
-django-cors-headers==4.3.0
-djangorestframework==3.14.0
-djangorestframework-simplejwt==5.3.0
-django-filter
-drf-yasg
-django-querycount
+django-cors-headers==4.7.0
+djangorestframework==3.16.1
+djangorestframework-simplejwt==5.5.1
+django-filter==2.4.0
+drf-yasg==1.21.10
+django-querycount  # نسخه خاصی ندارد، آخرین نسخه نصب می‌شود
 
 # ===========================
 # Config & Utilities
 # ===========================
-python-decouple
-django-extensions
+python-decouple  # آخرین نسخه نصب می‌شود
+django-extensions  # آخرین نسخه نصب می‌شود
 
 # ===========================
 # Background Tasks
 # ===========================
-celery
-redis
-django-celery-beat
+celery  # آخرین نسخه نصب می‌شود
+redis  # آخرین نسخه نصب می‌شود
+django-celery-beat  # آخرین نسخه نصب می‌شود
 
 # ===========================
 # Caching
 # ===========================
-redis[hiredis]
-django-redis
+redis[hiredis]  # آخرین نسخه نصب می‌شود
+django-redis  # آخرین نسخه نصب می‌شود
