@@ -1,0 +1,7 @@
+-r base.txt
+
+# ===========================
+# Debugging & Profiling
+# ===========================
+django-debug-toolbar
+django-silk

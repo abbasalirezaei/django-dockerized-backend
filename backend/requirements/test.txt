@@ -1,0 +1,9 @@
+-r base.txt
+
+# ===========================
+# Testing
+# ===========================
+pytest
+pytest-django
+pytest-cov
+factory_boy
