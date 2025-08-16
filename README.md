@@ -1,0 +1,2 @@
+# django-dockerized-backend 🐳
+django-dockerized-backend 🐳  A production-ready Django starter kit powered by Docker, featuring:  Django (backend framework)  PostgreSQL (database)  Redis (cache & Celery broker)  Celery (async tasks & scheduled jobs)  Flower (Celery monitoring dashboard)  SMTP4DEV (local email testing)  This boilerplate provides a scalable and maintainable backend environment out-of-the-box — perfect for starting new projects with modern best practices.
