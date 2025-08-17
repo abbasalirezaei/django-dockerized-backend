@@ -2,8 +2,9 @@ from django.shortcuts import render
 from django.views.generic import CreateView, DetailView, ListView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.decorators.cache import cache_page
-from django.utils.decorators import method_decorator    
+from django.utils.decorators import method_decorator
 from django.urls import reverse_lazy
+
 from .models import Todo
 from .forms import TodoForm
 
@@ -15,13 +16,15 @@ class TodoList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         import time
-        # Simulate a delay for demonstration purposes
-        time.sleep(5)  # Remove this line in production
+        time.sleep(2)  # just for testing cache
         return Todo.objects.filter(user=self.request.user).only('title', 'completed')
+    # per-view caching for 2 minutes :Cache the entire output of a view for a set duration.
 
-    @method_decorator(cache_page(60 * 5 , key_prefix="todo_list"))
+    @method_decorator(cache_page(60 * 5, key_prefix="todo_list"))
     def dispatch(self, *args, **kwargs):
         return super().dispatch(*args, **kwargs)
+
+
 class TodoCreate(LoginRequiredMixin, CreateView):
     model = Todo
     # form_class = TodoForm

@@ -47,7 +47,12 @@ INSTALLED_APPS = [
 ]
 ```
 
+
+# connect to redis db 
+docker-compose exec -it redis redis-cli -n 1/0
+
 ---
+
 
 
 ```
