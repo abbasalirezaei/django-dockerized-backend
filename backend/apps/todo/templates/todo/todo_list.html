@@ -1,0 +1,34 @@
+{% extends "todo/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Todo List</h1>
+    <form method="post" action="{% url 'todo:todo-create' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Todo</button>
+    </form>
+    <ul class="list-group mt-3">
+        {% for todo in todos %}
+        <li class="list-group-item">
+            <h5>{{ todo.title }}:
+                <span class="badge {% if todo.completed %}badge-success{% else %}badge-warning{% endif %}">
+                    {% if todo.completed %}
+                    Completed
+                    {% else %}
+                    Pending
+                    {% endif %}
+                </span>
+                     <a href="{% url 'todo:todo-delete' todo.id %}" class="btn btn-danger btn-sm">Delete</a> 
+         <a href="{% url 'todo:todo-update' todo.id %}" class="btn btn-secondary btn-sm">Edit</a>
+      
+            </h5>
+
+        </li>
+
+        {% empty %}
+        <li class="list-group-item">No todos available.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
